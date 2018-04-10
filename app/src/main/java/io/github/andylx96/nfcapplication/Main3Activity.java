@@ -17,19 +17,19 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Main3Activity extends AppCompatActivity {
-private Button regButton;
-private EditText regUsername, regPassword;
-private FirebaseAuth firebaseAuth;
-private ProgressDialog progressDialog;
-private String email, password;
+    private Button regButton;
+    private EditText regUsername, regPassword;
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
+    private String email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        regButton = (Button)findViewById(R.id.RegViewButton);
-        regUsername= (EditText)findViewById(R.id.RegTextUsername);
-        regPassword = (EditText)findViewById(R.id.RegTextPassword);
+        regButton = (Button) findViewById(R.id.RegViewButton);
+        regUsername = (EditText) findViewById(R.id.RegTextUsername);
+        regPassword = (EditText) findViewById(R.id.RegTextPassword);
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
@@ -41,7 +41,6 @@ private String email, password;
             }
         });
     }
-
 
 
     private void RegisterUser() {
@@ -68,7 +67,7 @@ private String email, password;
                         if (task.isSuccessful()) {
                             Toast.makeText(Main3Activity.this, "Reg Successfully", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
-finish();
+                            finish();
                             startActivity(new Intent(Main3Activity.this, MainMenuActivity.class));
 
                         } else {

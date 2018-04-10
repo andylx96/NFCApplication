@@ -35,7 +35,8 @@
         </activity>
         <activity android:name=".Main2Activity" />
         <activity android:name=".Main3Activity" />
-        <activity android:name=".MainMenuActivity"></activity>
+        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".EditMyProfileActivity"></activity>
     </application>
 
 </manifest>
