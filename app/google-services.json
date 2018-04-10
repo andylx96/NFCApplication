@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "617438188927",
+    "firebase_url": "https://ist440nfc.firebaseio.com",
+    "project_id": "ist440nfc",
+    "storage_bucket": "ist440nfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:617438188927:android:de3b8366016c1f51",
+        "android_client_info": {
+          "package_name": "io.github.andylx96.nfcapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "617438188927-siesgei34f239p4gfo7al3585rmhjp8b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.github.andylx96.nfcapplication",
+            "certificate_hash": "1fe5259831738cbd35581463f93bfd502c6893d1"
+          }
+        },
+        {
+          "client_id": "617438188927-pi209kegdqiuv87h49qn3l9oglon1umq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD74t0_0l1ujgke-k5xRU-mii6rv2EP9Ok"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "617438188927-pi209kegdqiuv87h49qn3l9oglon1umq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

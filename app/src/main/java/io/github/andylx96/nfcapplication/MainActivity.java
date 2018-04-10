@@ -71,6 +71,8 @@ import android.nfc.NfcAdapter.OnNdefPushCompleteCallback;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -82,6 +84,7 @@ public class MainActivity extends Activity implements
     EditText textOut;
 
     NfcAdapter nfcAdapter;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,7 @@ public class MainActivity extends Activity implements
         setContentView(R.layout.activity_main);
         textInfo = (TextView)findViewById(R.id.info);
         textOut = (EditText)findViewById(R.id.textout);
+        button = (Button)findViewById(R.id.nextButton);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if(nfcAdapter==null){
@@ -102,6 +106,13 @@ public class MainActivity extends Activity implements
             nfcAdapter.setNdefPushMessageCallback(this, this);
             nfcAdapter.setOnNdefPushCompleteCallback(this, this);
         }
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,Main2Activity.class));
+            }
+        });
+
     }
 
     @Override
