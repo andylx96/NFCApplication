@@ -61,10 +61,14 @@ private Spinner spinner;
 
                 userInfomation = dataSnapshot.getValue(UserInfomation.class);
 
-                mainMenuID.setText(userInfomation.getInfo()+"\n"+userInfomation.getName()+"\n"+
-                        userInfomation.getOtherInfomationArrayList().get(0).name+"\n"+
-                userInfomation.getOtherInfomationArrayList().get(0).info+"\n");
-
+                if (userInfomation != null) {
+                    mainMenuID.setText(userInfomation.getInfo() + "\n" + userInfomation.getName() + "\n" +
+                            userInfomation.getOtherInfomationArrayList().get(0).name + "\n" +
+                            userInfomation.getOtherInfomationArrayList().get(0).info + "\n");
+                }else{
+                    userInfomation = new UserInfomation();
+                    mainMenuID.setText(userInfomation.getInfo() + "\n" + userInfomation.getName());
+                }
 
                 ArrayAdapter<OtherInfomation> adapter =
                         new ArrayAdapter<OtherInfomation>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, userInfomation.getOtherInfomationArrayList());
