@@ -16,13 +16,24 @@
         <TextView
             android:id="@+id/mainMenuID"
             android:layout_width="match_parent"
-            android:layout_height="399dp"
+            android:layout_height="341dp"
             android:text="TextView" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/editProfileButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit My Profile" />
+
+        <Button
+            android:id="@+id/addOtherButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Other Contacts" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

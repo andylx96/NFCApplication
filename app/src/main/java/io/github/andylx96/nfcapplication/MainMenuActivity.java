@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +24,9 @@ public class MainMenuActivity extends AppCompatActivity {
 private TextView mainMenuID;
 private FirebaseAuth firebaseAuth;
 private DatabaseReference databaseReference;
-private Button editProfileButton;
+private Button editProfileButton, addOtherButton;
+private Spinner spinner;
+    UserInfomation userInfomation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,9 @@ private Button editProfileButton;
         setContentView(R.layout.activity_main_menu);
         mainMenuID = (TextView)findViewById(R.id.mainMenuID);
         editProfileButton = (Button)findViewById(R.id.editProfileButton);
+        spinner = (Spinner)findViewById(R.id.spinner);
+        addOtherButton = (Button)findViewById(R.id.addOtherButton);
+
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,15 +59,39 @@ private Button editProfileButton;
 //                        +"Name:" + value.get("name")+"\n"+"Info:" +
 //                value.get("info"));
 
-                UserInfomation userInfomation = dataSnapshot.getValue(UserInfomation.class);
+                userInfomation = dataSnapshot.getValue(UserInfomation.class);
 
                 mainMenuID.setText(userInfomation.getInfo()+"\n"+userInfomation.getName()+"\n"+
-                        userInfomation.getOtherInfomationArrayList().get(0).name);
+                        userInfomation.getOtherInfomationArrayList().get(0).name+"\n"+
+                userInfomation.getOtherInfomationArrayList().get(0).info+"\n");
+
+
+                ArrayAdapter<OtherInfomation> adapter =
+                        new ArrayAdapter<OtherInfomation>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, userInfomation.getOtherInfomationArrayList());
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                spinner.setAdapter(adapter);
+
 
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+
+
+
+
+        });
+
+        addOtherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainMenuActivity.this, AddOtherActivity.class));
+
 
             }
         });
@@ -69,5 +100,9 @@ private Button editProfileButton;
         mainMenuID.setText(firebaseUser.getEmail()+"\n"+firebaseAuth.getCurrentUser().getUid()+"\n"
                 + databaseReference.child("MyProfile"));
 
+    }
+
+    public UserInfomation getUserInfomation() {
+        return userInfomation;
     }
 }

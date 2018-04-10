@@ -14,4 +14,8 @@ public class OtherInfomation {
         this.name = name;
         this.info = info;
     }
+    @Override
+    public String toString() {
+        return name;
+    }
 }

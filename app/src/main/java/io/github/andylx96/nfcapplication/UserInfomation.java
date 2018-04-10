@@ -21,6 +21,11 @@ public class UserInfomation {
         this.otherInfomationArrayList = new ArrayList<>();
         this.otherInfomationArrayList.add( new OtherInfomation("Test1","Test2"));
     }
+    public UserInfomation(String name, String info, ArrayList<OtherInfomation> otherInfomationArrayList){
+        this.name = name;
+        this.info = info;
+        this.otherInfomationArrayList = otherInfomationArrayList;
+    }
 
     public String getName() {
         return name;
