@@ -1,6 +1,7 @@
 package io.github.andylx96.nfcapplication;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -67,8 +68,8 @@ private String email, password;
                         if (task.isSuccessful()) {
                             Toast.makeText(Main3Activity.this, "Reg Successfully", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
-
-//                            startActivity(new Intent(LoginByEmail.this, Main2Activity.class));
+finish();
+                            startActivity(new Intent(Main3Activity.this, MainMenuActivity.class));
 
                         } else {
                             Toast.makeText(Main3Activity.this, "Reg Failed", Toast.LENGTH_SHORT).show();

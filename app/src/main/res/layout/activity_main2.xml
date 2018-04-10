@@ -13,18 +13,21 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
-                android:layout_margin="15dp"
+                android:id="@+id/loginTextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/loginTextUsername"
+                android:layout_margin="15dp"
+                android:text="test@gmail.com"
                 tools:hint="Enter Email" />
 
             <EditText
-                android:layout_margin="15dp"
+                android:id="@+id/loginTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/loginTextPassword"
+                android:layout_margin="15dp"
+                android:text="123123"
                 tools:hint="EnterPassword" />
 
             <Button
