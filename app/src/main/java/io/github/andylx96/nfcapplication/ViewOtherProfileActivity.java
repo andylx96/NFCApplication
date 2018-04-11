@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -21,8 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class ViewOtherProfileActivity extends AppCompatActivity {
-    private TextView viewOtherTextView;
+public class ViewOtherProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private TextView viewOtherTextView, viewOtherSelectedProfileTextView;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private Spinner viewOtherSpinner;
@@ -36,7 +37,8 @@ public class ViewOtherProfileActivity extends AppCompatActivity {
         viewOtherTextView = (TextView) findViewById(R.id.otherProfleTextView);
 
         viewOtherSpinner = (Spinner) findViewById(R.id.otherProfileSpinner);
-
+        viewOtherSpinner.setOnItemSelectedListener(this);
+        viewOtherSelectedProfileTextView = (TextView)findViewById(R.id.viewSelectedProfileSpinner);
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -116,6 +118,28 @@ public class ViewOtherProfileActivity extends AppCompatActivity {
         });
         viewOtherTextView.setText(firebaseUser.getEmail() + "\n" + firebaseAuth.getCurrentUser().getUid() + "\n"
                 + databaseReference.child("MyProfile"));
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String item = adapterView.getItemAtPosition(i).toString();
+
+        String returnString ="";
+
+         for(int j = 0; j < myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().size();j++){
+
+                returnString = returnString + myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).name + "\n" +
+                        myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).info + "\n";
+
+        }
+        viewOtherSelectedProfileTextView.setText(returnString);
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
 

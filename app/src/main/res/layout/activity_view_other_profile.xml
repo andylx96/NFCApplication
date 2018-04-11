@@ -23,5 +23,11 @@ tools:context=".ViewOtherProfileActivity">
         android:id="@+id/otherProfileSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/viewSelectedProfileSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 </LinearLayout>
 </android.support.constraint.ConstraintLayout>
