@@ -20,39 +20,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainMenuActivity extends AppCompatActivity {
-    private TextView mainMenuID;
+
+public class ViewOtherProfileActivity extends AppCompatActivity {
+    private TextView viewOtherTextView;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-    private Button editProfileButton, addOtherButton, viewOtherProfileButton;
-    private Spinner spinner;
+    private Spinner viewOtherSpinner;
     //    UserInfomation userInfomation;
     ProfileAccount myProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_menu);
-        mainMenuID = (TextView) findViewById(R.id.mainMenuID);
-        editProfileButton = (Button) findViewById(R.id.editProfileButton);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        addOtherButton = (Button) findViewById(R.id.addOtherButton);
-        viewOtherProfileButton = (Button) findViewById(R.id.viewOtherProfileButton);
+        setContentView(R.layout.activity_view_other_profile);
+        viewOtherTextView = (TextView) findViewById(R.id.otherProfleTextView);
 
-        editProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainMenuActivity.this, EditMyProfileActivity.class));
-            }
-        });
-
-        viewOtherProfileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainMenuActivity.this, ViewOtherProfileActivity.class));
-
-            }
-        });
+        viewOtherSpinner = (Spinner) findViewById(R.id.otherProfileSpinner);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -69,25 +52,33 @@ public class MainMenuActivity extends AppCompatActivity {
 
                 myProfile = dataSnapshot.getValue(ProfileAccount.class);
                 if (myProfile != null) {
-                    if (myProfile.getMyProfile() != null) {
+                    if (myProfile.getOtherProfile() != null) {
 
-                        String returnString = "Name: " +myProfile.getMyProfile().getName() + "\n"+ "Info: " +myProfile.getMyProfile().getInfo() + "\n";
+//                        String returnString = "Name: " + myProfile.getOtherProfile().getMyProfile().getName() + "\n" + "Info: " + myProfile.getMyProfile().getInfo() + "\n";
+    String returnString ="";
 
-                        for (int i = 0; i < myProfile.getMyProfile().getOtherInfomationArrayList().size(); i++) {
-                            returnString = returnString + "Name: " +myProfile.getMyProfile().getOtherInfomationArrayList().get(i).name + "\n"
-                                    + "Info: " +myProfile.getMyProfile().getOtherInfomationArrayList().get(i).info + "\n";
+                        for (int i = 0; i < myProfile.getOtherProfile().size(); i++) {
+                            returnString = returnString + "Name: " + myProfile.getOtherProfile().get(i).getName() + "\n"
+                                    + "Info: " + myProfile.getOtherProfile().get(i).getInfo()+ "\n";
+                            for(int j = 0; j < myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().size();j++){
+
+                                returnString = returnString + myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).name + "\n" +
+                                myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).info + "\n";
+
+                            }
+
                         }
-                        mainMenuID.setText(returnString);
+                        viewOtherTextView.setText(returnString);
 
 //                        mainMenuID.setText(myProfile.getMyProfile().getInfo() + "\n" + myProfile.getMyProfile().getName() + "\n" +
 //                                myProfile.getMyProfile().getOtherInfomationArrayList().get(0).name + "\n" +
 //                                myProfile.getMyProfile().getOtherInfomationArrayList().get(0).info + "\n");
                     } else {
-                        mainMenuID.setText("My profile not found");
+                        viewOtherTextView.setText("My profile not found");
                     }
                 } else {
                     myProfile = new ProfileAccount();
-                    mainMenuID.setText(myProfile.getMyProfile().getInfo() + "\n" + myProfile.getMyProfile().getName());
+                    viewOtherTextView.setText(myProfile.getMyProfile().getInfo() + "\n" + myProfile.getMyProfile().getName());
                 }
 
 
@@ -107,11 +98,11 @@ public class MainMenuActivity extends AppCompatActivity {
 //                spinner.setAdapter(adapter);
 
 
-                ArrayAdapter<OtherInfomation> adapter =
-                        new ArrayAdapter<OtherInfomation>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, myProfile.getMyProfile().getOtherInfomationArrayList());
+                ArrayAdapter<UserInfomation> adapter =
+                        new ArrayAdapter<UserInfomation>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, myProfile.getOtherProfile());
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                spinner.setAdapter(adapter);
+                viewOtherSpinner.setAdapter(adapter);
 
 
             }
@@ -123,23 +114,8 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
         });
-
-        addOtherButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainMenuActivity.this, AddOtherActivity.class));
-
-
-            }
-        });
-
-
-        mainMenuID.setText(firebaseUser.getEmail() + "\n" + firebaseAuth.getCurrentUser().getUid() + "\n"
+        viewOtherTextView.setText(firebaseUser.getEmail() + "\n" + firebaseAuth.getCurrentUser().getUid() + "\n"
                 + databaseReference.child("MyProfile"));
-
     }
-
-//    public UserInfomation getUserInfomation() {
-//        return userInfomation;
-//    }
 }
+

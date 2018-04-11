@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/mainMenuID"
             android:layout_width="match_parent"
-            android:layout_height="341dp"
+            android:layout_height="273dp"
             android:text="TextView" />
 
         <Spinner
@@ -35,5 +35,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Other Contacts" />
+
+        <Button
+            android:id="@+id/viewOtherProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Other Profiles" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

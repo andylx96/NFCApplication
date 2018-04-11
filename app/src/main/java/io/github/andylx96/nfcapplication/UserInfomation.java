@@ -38,4 +38,21 @@ public class UserInfomation {
     public ArrayList<OtherInfomation> getOtherInfomationArrayList() {
         return otherInfomationArrayList;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public void setOtherInfomationArrayList(ArrayList<OtherInfomation> otherInfomationArrayList) {
+        this.otherInfomationArrayList = otherInfomationArrayList;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

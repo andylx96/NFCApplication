@@ -38,13 +38,14 @@ public class EditMyProfileActivity extends AppCompatActivity {
 
 
 
-                UserInfomation userInfomation = new UserInfomation(name, info);
+//                UserInfomation userInfomation =
+                ProfileAccount profileAccount = new ProfileAccount("test");
+                profileAccount.setMyProfile(new UserInfomation(name, info));
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
 
-//                databaseReference.child(user.getUid()).child("MyProfile").setValue(userInfomation);
-                  databaseReference.child(user.getUid()).child("MyProfile").setValue(userInfomation);
+                  databaseReference.child(user.getUid()).child("MyProfile").setValue(profileAccount);
 
 
 
