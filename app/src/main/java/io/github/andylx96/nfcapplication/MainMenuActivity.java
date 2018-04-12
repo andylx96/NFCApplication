@@ -24,7 +24,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private TextView mainMenuID;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-    private Button editProfileButton, addOtherButton, viewOtherProfileButton;
+    private Button editProfileButton, addOtherButton, viewOtherProfileButton, shareDataButton;
     private Spinner spinner;
     //    UserInfomation userInfomation;
     ProfileAccount myProfile;
@@ -38,6 +38,7 @@ public class MainMenuActivity extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner);
         addOtherButton = (Button) findViewById(R.id.addOtherButton);
         viewOtherProfileButton = (Button) findViewById(R.id.viewOtherProfileButton);
+        shareDataButton = (Button) findViewById(R.id.shareDataButton);
 
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +51,13 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainMenuActivity.this, ViewOtherProfileActivity.class));
+
+            }
+        });
+        shareDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainMenuActivity.this, ShareDataActivity.class));
 
             }
         });

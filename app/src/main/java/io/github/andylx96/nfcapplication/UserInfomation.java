@@ -9,8 +9,8 @@ public class UserInfomation {
     public ArrayList<OtherInfomation> otherInfomationArrayList;
 
     public UserInfomation(){
-        this.name = "";
-        this.info = "";
+        this.name = "NA Name";
+        this.info = "NA Info";
         this.otherInfomationArrayList = new ArrayList<>();
 
     }

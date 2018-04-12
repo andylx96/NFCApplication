@@ -17,7 +17,8 @@ tools:context=".ViewOtherProfileActivity">
         android:id="@+id/otherProfleTextView"
         android:layout_width="match_parent"
         android:layout_height="273dp"
-        android:text="TextView" />
+        android:text="TextView"
+        tools:background="@color/colorPrimary" />
 
     <Spinner
         android:id="@+id/otherProfileSpinner"
