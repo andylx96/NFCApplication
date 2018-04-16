@@ -12,10 +12,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -91,6 +93,7 @@ Toast.makeText(MainMenuActivity.this,"editClicked",Toast.LENGTH_SHORT).show();
         final EditText mTextName = (EditText)mView.findViewById(R.id.editTextName);
         final EditText mTextInfo = (EditText)mView.findViewById(R.id.editTextInfo);
         Button button = (Button)mView.findViewById(R.id.editTextButton);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +121,7 @@ Toast.makeText(MainMenuActivity.this,"editClicked",Toast.LENGTH_SHORT).show();
 
         mBuilder.setView(mView);
         AlertDialog dialog = mBuilder.create();
+        dialog.getWindow().getAttributes().gravity = Gravity.CENTER;
         dialog.show();
 
         return true;
