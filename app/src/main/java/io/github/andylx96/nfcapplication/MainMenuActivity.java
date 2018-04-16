@@ -1,6 +1,7 @@
 package io.github.andylx96.nfcapplication;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -10,12 +11,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -43,7 +47,87 @@ public class MainMenuActivity extends AppCompatActivity implements AdapterView.O
     ProfileAccount myProfile;
     ListView listView;
     FloatingActionButton floatingActionButton;
+    private ArrayAdapter<OtherInfomation> adapter2;
+    private AdapterView.AdapterContextMenuInfo info;
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.list_view_menu, menu);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        info= (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+switch (item.getItemId()){
+    case R.id.delete:
+        myProfile.getMyProfile().getOtherInfomationArrayList().remove(info.position);
+//        adapter2.notifyDataSetChanged();
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+//        databaseReference = FirebaseDatabase.getInstance().getReference().child(user.getUid());
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+
+        databaseReference.child(user.getUid()).child("MyProfile").setValue(myProfile);
+
+////                start
+//
+//                databaseReference = FirebaseDatabase.getInstance().getReference().child(user.getUid());
+//
+//
+
+
+
+        return true;
+    case R.id.edit_id:
+Toast.makeText(MainMenuActivity.this,"editClicked",Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainMenuActivity.this
+        );
+        View mView = getLayoutInflater().inflate(R.layout.edit_text_layout,null);
+        final EditText mTextName = (EditText)mView.findViewById(R.id.editTextName);
+        final EditText mTextInfo = (EditText)mView.findViewById(R.id.editTextInfo);
+        Button button = (Button)mView.findViewById(R.id.editTextButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainMenuActivity.this, "working", Toast.LENGTH_SHORT).show();
+
+
+
+                myProfile.getMyProfile().getOtherInfomationArrayList().get(info.position).setName(mTextInfo.getText().toString().trim());
+                myProfile.getMyProfile().getOtherInfomationArrayList().get(info.position).setInfo(mTextName.getText().toString().trim());
+//        adapter2.notifyDataSetChanged();
+
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+//        databaseReference = FirebaseDatabase.getInstance().getReference().child(user.getUid());
+
+                databaseReference = FirebaseDatabase.getInstance().getReference();
+
+
+                databaseReference.child(user.getUid()).child("MyProfile").setValue(myProfile);
+
+
+
+            }
+        });
+
+
+        mBuilder.setView(mView);
+        AlertDialog dialog = mBuilder.create();
+        dialog.show();
+
+        return true;
+        default:
+
+            return super.onContextItemSelected(item);
+
+}
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +147,17 @@ public class MainMenuActivity extends AppCompatActivity implements AdapterView.O
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar2);
 setSupportActionBar(toolbar);
 
+
+registerForContextMenu(listView);
+
+listView.setLongClickable(true);
+listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(MainMenuActivity.this,"Toast",Toast.LENGTH_SHORT).show();
+        return false;
+    }
+});
 
 
 
@@ -154,7 +249,7 @@ setSupportActionBar(toolbar);
 //                spinner.setAdapter(adapter);
 
 
-                ArrayAdapter<OtherInfomation> adapter2 =
+                adapter2 =
                         new ArrayAdapter<OtherInfomation>(getApplicationContext(), android.R.layout.simple_list_item_1, myProfile.getMyProfile().getOtherInfomationArrayList());
                 adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 
