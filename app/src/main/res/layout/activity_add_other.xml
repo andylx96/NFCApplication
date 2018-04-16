@@ -11,28 +11,35 @@ tools:context=".AddOtherActivity">
     android:layout_height="495dp"
     android:orientation="vertical"
     tools:layout_editor_absoluteX="8dp"
-    tools:layout_editor_absoluteY="8dp">
+    tools:layout_editor_absoluteY="8dp"
+    android:gravity="center">
 
     <EditText
         android:id="@+id/addOtherName2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:gravity="center"
+        android:hint="Account Type (ex. Skype)"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/addOtherInfo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:gravity="center"
+        android:hint="Account ID (User123)"
+        android:inputType="textPersonName" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="84dp" />
     <Button
         android:id="@+id/addOtherButton2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sava Info" />
+        android:text="Sava Info"
+        android:gravity="center"/>
 </LinearLayout>
 </android.support.constraint.ConstraintLayout>

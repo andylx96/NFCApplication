@@ -31,7 +31,7 @@ import org.json.JSONObject;
 public class ShareDataActivity extends Activity implements
         NfcAdapter.CreateNdefMessageCallback, NfcAdapter.OnNdefPushCompleteCallback {
 
-    TextView shareDataTextView;
+//    TextView shareDataTextView;
 //    EditText textOut;
 
     NfcAdapter nfcAdapter;
@@ -44,7 +44,7 @@ public class ShareDataActivity extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_data);
-        shareDataTextView = (TextView) findViewById(R.id.shareDataTextView);
+//        shareDataTextView = (TextView) findViewById(R.id.shareDataTextView);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (nfcAdapter == null) {
@@ -75,7 +75,7 @@ public class ShareDataActivity extends Activity implements
                 NdefRecord[] inNdefRecords = inNdefMessage.getRecords();
                 NdefRecord NdefRecord_0 = inNdefRecords[0];
                 String inMsg = new String(NdefRecord_0.getPayload());
-                shareDataTextView.setText(inMsg);
+//                shareDataTextView.setText(inMsg);
 
 
                 FirebaseAuth firebaseAuth;
@@ -92,7 +92,7 @@ public class ShareDataActivity extends Activity implements
                 Gson gson = new Gson();
 
                 userInfomation = gson.fromJson(inMsg, UserInfomation.class);
-                shareDataTextView.setText(userInfomation.getName() + "\n" + userInfomation.getInfo());
+//                shareDataTextView.setText(userInfomation.getName() + "\n" + userInfomation.getInfo());
 
 //            textInfo.setText(inMsg);
 

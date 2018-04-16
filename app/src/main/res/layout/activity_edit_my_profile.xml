@@ -11,27 +11,25 @@
         android:layout_height="495dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        tools:layout_editor_absoluteY="8dp"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/editFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:gravity="center"
+            android:hint="Enter You Name"
+            android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/editInfo"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:layout_height="84dp" />
 
         <Button
             android:id="@+id/editSaveButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sava Info" />
     </LinearLayout>

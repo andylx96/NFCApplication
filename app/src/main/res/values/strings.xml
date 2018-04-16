@@ -1,5 +1,21 @@
 <resources>
     <string name="app_name">NFCApplication</string>
+    <string name="menu_action">Item</string>
+    <string name="item2">item2</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="item3">item3</string>
+    <string name="title_activity_main4">Main4Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="share_profile">Share Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="view_other_profile">View Other Profile</string>
+
+
 
 
 </resources>

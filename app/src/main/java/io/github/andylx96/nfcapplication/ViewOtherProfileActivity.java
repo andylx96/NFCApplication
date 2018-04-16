@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,23 +23,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class ViewOtherProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ViewOtherProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     private TextView viewOtherTextView, viewOtherSelectedProfileTextView;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-    private Spinner viewOtherSpinner;
+    //    private Spinner viewOtherSpinner;
     //    UserInfomation userInfomation;
     ProfileAccount myProfile;
+    private ListView viewOtherList;
+    private Spinner viewOtherSpinner;
+    private int spinnerIndex, listViewIndex;
+    ArrayAdapter<OtherInfomation> adapter;
+    private ListView listView;
+    //    private
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_other_profile);
         viewOtherTextView = (TextView) findViewById(R.id.otherProfleTextView);
-
-        viewOtherSpinner = (Spinner) findViewById(R.id.otherProfileSpinner);
+        viewOtherSpinner = (Spinner) findViewById(R.id.selectOtherSpinner);
         viewOtherSpinner.setOnItemSelectedListener(this);
-        viewOtherSelectedProfileTextView = (TextView)findViewById(R.id.viewSelectedProfileSpinner);
+        viewOtherList = (ListView) findViewById(R.id.otherProfileList);
+
+        viewOtherList.setOnItemClickListener(this);
+       listView = (ListView) findViewById(R.id.otherProfileList);
+
+        viewOtherSelectedProfileTextView = (TextView) findViewById(R.id.viewSelectedProfileText);
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
@@ -57,15 +68,15 @@ public class ViewOtherProfileActivity extends AppCompatActivity implements Adapt
                     if (myProfile.getOtherProfile() != null) {
 
 //                        String returnString = "Name: " + myProfile.getOtherProfile().getMyProfile().getName() + "\n" + "Info: " + myProfile.getMyProfile().getInfo() + "\n";
-    String returnString ="";
+                        String returnString = "";
 
                         for (int i = 0; i < myProfile.getOtherProfile().size(); i++) {
                             returnString = returnString + "Name: " + myProfile.getOtherProfile().get(i).getName() + "\n"
-                                    + "Info: " + myProfile.getOtherProfile().get(i).getInfo()+ "\n";
-                            for(int j = 0; j < myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().size();j++){
+                                    + "Info: " + myProfile.getOtherProfile().get(i).getInfo() + "\n";
+                            for (int j = 0; j < myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().size(); j++) {
 
                                 returnString = returnString + myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).name + "\n" +
-                                myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).info + "\n";
+                                        myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).info + "\n";
 
                             }
 
@@ -99,16 +110,24 @@ public class ViewOtherProfileActivity extends AppCompatActivity implements Adapt
 //
 //                spinner.setAdapter(adapter);
 
+                if (myProfile.getOtherProfile().size() > 0) {
+                    if (myProfile.getOtherProfile().get(spinnerIndex).getOtherInfomationArrayList() != null) {
 
-                ArrayAdapter<UserInfomation> adapter =
-                        new ArrayAdapter<UserInfomation>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, myProfile.getOtherProfile());
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        adapter =
+                                new ArrayAdapter<OtherInfomation>(getApplicationContext(), android.R.layout.simple_list_item_1, myProfile.getOtherProfile().get(spinnerIndex).getOtherInfomationArrayList());
+                        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 
-                viewOtherSpinner.setAdapter(adapter);
+                        listView.setAdapter(adapter);
 
 
+                        ArrayAdapter<UserInfomation> adapter2 =
+                                new ArrayAdapter<UserInfomation>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, myProfile.getOtherProfile());
+                        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        viewOtherSpinner.setAdapter(adapter2);
+
+                    }
+                }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -124,21 +143,44 @@ public class ViewOtherProfileActivity extends AppCompatActivity implements Adapt
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String item = adapterView.getItemAtPosition(i).toString();
 
-        String returnString ="";
+        spinnerIndex = i;
 
-         for(int j = 0; j < myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().size();j++){
+        String returnString = "";
 
-                returnString = returnString + myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).name + "\n" +
-                        myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).info + "\n";
+        returnString = "Name: " + myProfile.getOtherProfile().get(i).getName() +
+                "\nID: " + myProfile.getOtherProfile().get(i).getInfo();
+//         for(int j = 0; j < myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().size();j++){
+//
+//                returnString = returnString + myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).name + "\n" +
+//                        myProfile.getOtherProfile().get(i).getOtherInfomationArrayList().get(j).info + "\n";
+//
+//        }
 
-        }
-        viewOtherSelectedProfileTextView.setText(returnString);
+        adapter =
+                new ArrayAdapter<OtherInfomation>(getApplicationContext(), android.R.layout.simple_list_item_1, myProfile.getOtherProfile().get(spinnerIndex).getOtherInfomationArrayList());
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+
+        listView.setAdapter(adapter);
+
+
+        viewOtherTextView.setText(returnString);
 
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        listViewIndex = i;
+
+
+        String returnString = "Selected: " + myProfile.getOtherProfile().get(spinnerIndex).getOtherInfomationArrayList().get(listViewIndex).name +
+                "\nAccount ID: " + myProfile.getOtherProfile().get(spinnerIndex).getOtherInfomationArrayList().get(listViewIndex).info;
+        viewOtherSelectedProfileTextView.setText(returnString);
+
 
     }
 }

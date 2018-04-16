@@ -27,12 +27,13 @@
         </activity>
         <activity android:name=".Main2Activity" />
         <activity android:name=".Main3Activity" />
-        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".MainMenuActivity"
+
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".EditMyProfileActivity" />
         <activity android:name=".AddOtherActivity" />
         <activity android:name=".ViewOtherProfileActivity" />
         <activity android:name=".ShareDataActivity">
-
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
@@ -40,9 +41,11 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
-
-
         </activity>
+        <activity
+            android:name=".Main4Activity"
+            android:label="@string/title_activity_main4"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

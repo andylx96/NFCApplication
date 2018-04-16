@@ -2,50 +2,114 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainMenuActivity">
+    android:fitsSystemWindows="true">
+
+    <include
+        layout="@layout/toolbar_test"
+        android:id="@+id/toolbar2"/>
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/mainMenuID"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="273dp"
+            android:layout_height="50dp"
             android:text="TextView" />
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="156dp">
 
-        <Button
-            android:id="@+id/editProfileButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit My Profile" />
 
-        <Button
-            android:id="@+id/addOtherButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add Other Contacts" />
+    <TextView
+        android:id="@+id/mainMenuID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="TextView"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:fontFamily="serif-monospace"
+        tools:text="Hi User" />
+</ScrollView>
 
-        <Button
-            android:id="@+id/viewOtherProfileButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Other Profiles" />
 
-        <Button
-            android:id="@+id/shareDataButton"
-            android:layout_width="match_parent"
+        <!--<Spinner-->
+        <!--android:id="@+id/spinner"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/editProfileButton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Edit My Profile" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/addOtherButton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Add Other Contacts" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/viewOtherProfileButton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="View Other Profiles" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/shareDataButton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Share Data" />-->
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share Data" />
+            android:layout_gravity="center"
+            android:gravity="center_vertical|center_horizontal"
+
+            android:text="Selected: None\nAccount ID: None"
+            android:textColor="@android:color/holo_red_light" />
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="1dp" />
+
+
+
     </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="281dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_input_add"
+            />
+
 </android.support.constraint.ConstraintLayout>

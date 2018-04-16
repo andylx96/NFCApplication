@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="@string/edit_profile"
+        android:id="@+id/edit_profile"
+        app:showAsAction="never"/>
+    <item android:title="@string/view_other_profile"
+        android:id="@+id/view_other"
+        app:showAsAction="never"/>
+
+    <item android:title="@string/share_profile"
+        android:id="@+id/share_profile"
+        app:showAsAction="never"/>
+</menu>

@@ -15,11 +15,19 @@ public class UserInfomation {
 
     }
 
-    public UserInfomation(String name, String info){
+    public UserInfomation(String name, String info) {
         this.name = name;
         this.info = info;
         this.otherInfomationArrayList = new ArrayList<>();
-        this.otherInfomationArrayList.add( new OtherInfomation("Test1","Test2"));
+        this.otherInfomationArrayList.add(new OtherInfomation("Test1", "Test2"));
+
+    }
+    public UserInfomation(String test){
+//            this.name = name;
+//            this.info = info;
+            this.otherInfomationArrayList = new ArrayList<>();
+            this.otherInfomationArrayList.add( new OtherInfomation("Test3","Test4"));
+
     }
     public UserInfomation(String name, String info, ArrayList<OtherInfomation> otherInfomationArrayList){
         this.name = name;

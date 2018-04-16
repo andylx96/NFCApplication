@@ -82,7 +82,7 @@ public class AddOtherActivity extends AppCompatActivity {
 
                         databaseReference.child(user.getUid()).child("MyProfile").setValue(profileAccount);
                         Toast.makeText(AddOtherActivity.this,"infosaved"+ name,Toast.LENGTH_LONG).show();
-
+finish();
 
 
                     }

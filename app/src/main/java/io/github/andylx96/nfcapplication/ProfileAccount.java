@@ -29,6 +29,7 @@ public class ProfileAccount {
         this.myProfile = new UserInfomation();
         this.otherProfile = new ArrayList<UserInfomation>();
         this.otherProfile.add(new UserInfomation("Timmy", "zoe"));
+        this.otherProfile.add(new UserInfomation("test"));
 
 
     }

@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "io.github.andylx96.nfcapplication"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -28,8 +28,12 @@ dependencies {
     compile 'com.google.firebase:firebase-core:11.0.2'
     compile 'com.google.firebase:firebase-database:11.0.2'
     compile 'com.google.firebase:firebase-auth:11.0.2'
-    compile 'com.google.firebase:firebase-appindexing:10.0.0'
+    compile 'com.google.firebase:firebase-appindexing:11.0.2'
     compile 'com.google.code.gson:gson:2.8.0'
+//    implementation 'com.android.support:design:26.1.0'
+//    compile 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
 }
 
 apply plugin: 'com.google.gms.google-services'
